@@ -1,12 +1,14 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:6.7.0
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.0.1
 
 MAINTAINER Justin Henderson justin@hasecuritysolutions.com
 
 USER root
-COPY readonlyrest-1.17.4_es6.7.0.zip /tmp
-RUN cd /usr/share/elasticsearch
-RUN bin/elasticsearch-plugin install -b file:///tmp/readonlyrest-1.17.4_es6.7.0.zip
-RUN bin/elasticsearch-plugin install -b repository-gcs
+RUN cd /tmp \
+    && wget https://hasecuritysolutions.com/readonlyrest-1.18.0_es7.0.1.zip -O readonlyrest-plugin.zip \
+    && cd /usr/share/elasticsearch \
+    && bin/elasticsearch-plugin install -b file:///tmp/readonlyrest-plugin.zip \
+    && rm -f /tmp/readonlyrest-plugin.zip \
+    && bin/elasticsearch-plugin install -b repository-gcs
 USER elasticsearch
 
 STOPSIGNAL SIGTERM
