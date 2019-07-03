@@ -9,6 +9,7 @@ RUN cd /tmp \
     && cd /usr/share/elasticsearch \
     && bin/elasticsearch-plugin install -b file:///tmp/readonlyrest-plugin.zip \
     && rm -f /tmp/readonlyrest-plugin.zip \
+    && bin/elasticsearch-plugin install -b repository-s3 \
     && yum remove wget -y \
     && yum clean all -y
 USER elasticsearch
