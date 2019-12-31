@@ -5,7 +5,7 @@ MAINTAINER Justin Henderson justin@hasecuritysolutions.com
 USER root
 RUN cd /tmp \
     && yum install wget -y \
-    && wget https://hasecuritysolutions.com/readonlyrest-1.18.9_es7.5.0.zip -O readonlyrest-plugin.zip \
+    && wget https://hasecuritysolutions.com/readonlyrest-1.18.10_es7.5.0.zip -O readonlyrest-plugin.zip \
     && chmod 777 /tmp/readonlyrest-plugin.zip \
     && chown elasticsearch:elasticsearch /tmp/readonlyrest-plugin.zip \
     && yum remove wget -y \
