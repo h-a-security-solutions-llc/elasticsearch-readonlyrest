@@ -1,18 +1,9 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.5.2
 
 MAINTAINER Justin Henderson justin@hasecuritysolutions.com
 
-USER root
-RUN cd /tmp \
-    && yum install wget -y \
-    && wget https://hasecuritysolutions.com/readonlyrest-1.18.10_es7.5.1.zip -O readonlyrest-plugin.zip \
-    && chmod 777 /tmp/readonlyrest-plugin.zip \
-    && chown elasticsearch:elasticsearch /tmp/readonlyrest-plugin.zip \
-    && yum remove wget -y \
-    && yum clean all -y
 USER elasticsearch
 RUN cd /usr/share/elasticsearch \
-    && bin/elasticsearch-plugin install -b file:///tmp/readonlyrest-plugin.zip \
-    && rm -f /tmp/readonlyrest-plugin.zip
+    && bin/elasticsearch-plugin install -q https://hasecuritysolutions.com/readonlyrest-1.19.0_es7.5.2.zip
 
 STOPSIGNAL SIGTERM
