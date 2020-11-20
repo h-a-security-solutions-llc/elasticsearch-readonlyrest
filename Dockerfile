@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch-oss:7.9.3
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.9.3
 
 MAINTAINER Justin Henderson justin@hasecuritysolutions.com
 
